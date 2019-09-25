@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -10,7 +11,7 @@ int main(void)
    (Cria um arquivo vazio para escrita. Se já havia o arquivo, ele é perdido.) */
 
   if ((fptr = fopen("teste.txt", "w")) == NULL)
-    printf("\n Erro na abertura do arquivo");
+   { printf("\n Erro na abertura do arquivo"); exit(1);}
 
   /* Utiliza a função (fputc,'x',ponteiro_para_arquivo) , 
      para escrever no arquivo */
@@ -34,7 +35,7 @@ int main(void)
    (Adiciona no final do arquivo. Se o arquivo não existir, a função o cria.) */
 
   if ((fptr = fopen("teste.txt", "a")) == NULL)
-    printf("\n Erro na abertura do arquivo");
+    { printf("\n Erro na abertura do arquivo"); exit(1);}
   else
   {
     fputc(' ', fptr);
@@ -53,7 +54,7 @@ int main(void)
   fclose(fptr);
 
   if ((fptr = fopen("teste.txt", "a")) == NULL)
-    printf("\n Erro na abertura do arquivo");
+    { printf("\n Erro na abertura do arquivo"); exit(1);}
   else
   {
     fputc(' ', fptr);
@@ -76,7 +77,10 @@ int main(void)
 
     while ((a = fgetc(fptr)) != EOF)
       printf("%c", a);
-  }
+
+  }else{ printf("\n Erro na abertura do arquivo"); exit(1);}
+
+
   printf("\n");
 
   fclose(fptr);
